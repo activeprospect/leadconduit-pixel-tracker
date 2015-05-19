@@ -1,0 +1,32 @@
+{
+  "name": "leadconduit-hasoffers-postback-tracking",
+  "description": "LeadConduit integration for HasOffers",
+  "author": "Lynda Wellhausen <lynda@activeprospect.com>",
+  "version": "0.0.1",
+  "main": "index.js",
+  "licenses": [
+    {
+      "type": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International",
+      "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activeprospect/leadconduit-hasoffers-postback-tracking"
+  },
+  "engines": {
+    "node": ">=0.8.1"
+  },
+  "scripts": {
+    "test": "cake test",
+
+    "prepublish": "cake build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": ">= 1.9.0",
+    "coffee-script": ">= 1.7.0",
+    "leadconduit-fields": "^3.0.0",
+    "mocha": ">= 1.17.0"
+  }
+}
