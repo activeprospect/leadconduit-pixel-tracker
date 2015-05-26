@@ -1,6 +1,6 @@
 {
-  "name": "leadconduit-hasoffers-postback-tracking",
-  "description": "LeadConduit integration for HasOffers",
+  "name": "leadconduit-pixel-tracker",
+  "description": "LeadConduit pixel tracker",
   "author": "Lynda Wellhausen <lynda@activeprospect.com>",
   "version": "0.0.1",
   "main": "index.js",
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/activeprospect/leadconduit-hasoffers-postback-tracking"
+    "url": "https://github.com/activeprospect/leadconduit-pixel-tracker"
   },
   "engines": {
     "node": ">=0.8.1"
