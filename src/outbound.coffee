@@ -35,7 +35,7 @@ validate = (vars) ->
 
 response = (vars, req, res) ->
   outbound = {} 
-  if 300 - res.status >= 0
+  if res.status >= 200 and res.status <= 299
     outbound.outcome = 'success'
     outbound.reason = "valid status: (#{res.status})"
   else
