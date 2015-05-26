@@ -42,25 +42,34 @@ describe 'Success Response', ->
   
   it 'should parse success when status is in the 200 range', ->
     res =
-      status: 200,
-    expected =
-          outcome: 'success'
-          reason: 'valid status: (200)'
+      status: 200
 
     response = integration.response({}, {}, res)
-    assert.deepEqual expected, response
+    assert.equal('success',response.outcome)
+
+  it 'should parse reason when status is in the 200 range', ->
+    res =
+      status: 200
+
+    response = integration.response({}, {}, res)
+    assert.equal('valid status: (200)', response.reason)
+   
 
 describe 'Failure Response', ->
 
   it 'should parse failure when status is not in 200 range', ->
     res =
-      status: 403,
-    expected =
-          outcome: 'failure'
-          reason: 'invalid status: (403)'
+      status: 403
 
     response = integration.response({}, {}, res)
-    assert.deepEqual expected, response
+    assert.equal('failure',response.outcome)
+
+  it 'should parse status when status is not in 200 range', ->
+    res =
+      status: 403
+
+    response = integration.response({}, {}, res)
+    assert.equal('invalid status: (403)', response.reason)
 
   
 
