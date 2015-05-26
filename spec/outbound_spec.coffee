@@ -40,7 +40,7 @@ describe 'Outbound validate', ->
 
 describe 'Success Response', ->
   
-  it 'should parse success when status is in the 200 range', ->
+  it 'should parse outcome as success when status is in the 200 range', ->
     res =
       status: 200
 
@@ -57,14 +57,14 @@ describe 'Success Response', ->
 
 describe 'Failure Response', ->
 
-  it 'should parse failure when status is not in 200 range', ->
+  it 'should parse outcome as failure when status is not in 200 range', ->
     res =
       status: 403
 
     response = integration.response({}, {}, res)
     assert.equal('failure',response.outcome)
 
-  it 'should parse status when status is not in 200 range', ->
+  it 'should parse reason when status is not in 200 range', ->
     res =
       status: 403
 
