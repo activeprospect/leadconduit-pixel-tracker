@@ -28,7 +28,6 @@ request.variables = ->
 validate = (vars) ->
   return 'url must not be blank' unless vars.lead.url 
   return 'url must be valid' if validUrl.isUri(vars.lead.url) is undefined
-  return 'transaction_id must not be blank' unless vars.lead.transaction_id
 
 #
 # Response Function ------------------------------------------------------

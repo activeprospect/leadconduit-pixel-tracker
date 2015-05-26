@@ -35,7 +35,7 @@ describe 'Outbound validate', ->
     assert.equal error, 'url must be valid'
 
   it 'should not error when url is valid', ->
-    error = integration.validate(lead: fields.buildLeadVars(url: 'https://www.npmjs.com', transaction_id:'1111a'))
+    error = integration.validate(lead: fields.buildLeadVars(url: 'https://www.npmjs.com'))
     assert.equal error, undefined
 
 describe 'Success Response', ->
