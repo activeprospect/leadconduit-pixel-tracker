@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/activeprospect/leadconduit-integrations-pixel-tracker"
+    "url": "https://github.com/activeprospect/leadconduit-integration-pixel-tracker"
   },
   "engines": {
     "node": ">=0.8.1"
