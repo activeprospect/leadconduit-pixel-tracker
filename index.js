@@ -1,5 +1,4 @@
 module.exports = {
-  outbound: {
-    email: require('./lib/outbound')
+    outbound: require('./lib/outbound')
   }
 };
