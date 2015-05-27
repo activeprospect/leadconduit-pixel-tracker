@@ -54,7 +54,6 @@ response.variables = ->
 #
 
 module.exports =
-  name: 'outbound'
   validate: validate
   request: request
   response: response
