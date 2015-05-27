@@ -1,6 +1,6 @@
 {
   "name": "leadconduit-pixel-tracker",
-  "description": "LeadConduit Pixel Tracker",
+  "description": "LeadConduit pixel tracker",
   "author": "Lynda Wellhausen <lynda@activeprospect.com>",
   "version": "0.0.1",
   "main": "index.js",
