@@ -7,18 +7,18 @@ validUrl = require('valid-url');
 
 request = (vars) ->
   
-  url = vars.lead.url
+  url = vars.url
   
   req = 
     method: 'GET'
     url: url
     headers:
-      'Accept': 'application/json'
+      'Accept': '*/*'
       'Content-Type': 'application/x-www-form-urlencoded'
 
 request.variables = ->
   [
-    { name: 'lead.url', type: 'string', required: true, description: 'url address for tracking' }
+    { name: 'url', type: 'string', required: true, description: 'url address for tracking' }
   ]
 
 #
@@ -26,8 +26,8 @@ request.variables = ->
 #
 
 validate = (vars) ->
-  return 'url must not be blank' unless vars.lead.url 
-  return 'url must be valid' if validUrl.isUri(vars.lead.url) is undefined
+  return 'url must not be blank' unless vars.url 
+  return 'url must be valid' if validUrl.isUri(vars.url) is undefined
 
 #
 # Response Function ------------------------------------------------------
@@ -37,7 +37,6 @@ response = (vars, req, res) ->
   outbound = {} 
   if res.status >= 200 and res.status <= 299
     outbound.outcome = 'success'
-    outbound.reason = "valid status: (#{res.status})"
   else
     outbound.outcome = 'failure' 
     outbound.reason = "invalid status: (#{res.status})"
@@ -46,8 +45,8 @@ response = (vars, req, res) ->
 
 response.variables = ->
   [
-    { name: 'email.outcome', type: 'string', description: 'Success if outcome is in 200 range. Failure if not.' }
-    { name: 'email.reason', type: 'string', description: 'The status code returned after sending a GET request.' } 
+    { name: 'outbound.outcome', type: 'string', description: 'Success if outcome is in 200 range. Failure if not.' }
+    { name: 'outbound.reason', type: 'string', description: 'This is the status code when returned code is not in 200 range.' } 
   ]
 
 #
@@ -55,7 +54,7 @@ response.variables = ->
 #
 
 module.exports =
-  name: 'Outbound Data Append'
+  name: 'outbound'
   validate: validate
   request: request
   response: response

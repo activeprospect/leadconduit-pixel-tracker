@@ -5,7 +5,7 @@ integration = require('../src/outbound')
 describe 'Outbound Request', ->
 
   beforeEach ->
-    @vars = lead: {url: 'http://example.com/trackingpage'}
+    @vars = {url: 'http://example.com/trackingpage'}
     @request = integration.request(@vars)
 
   it 'should have a valid URL', ->
@@ -15,7 +15,7 @@ describe 'Outbound Request', ->
     assert.equal @request.method, 'GET'
 
   it 'should accept JSON', ->
-    assert.equal @request.headers.Accept, 'application/json'
+    assert.equal @request.headers.Accept, '*/*'
 
   it 'should have Content-Type', ->
     assert.equal @request.headers['Content-Type'], 'application/x-www-form-urlencoded' 
@@ -23,19 +23,19 @@ describe 'Outbound Request', ->
 describe 'Outbound validate', ->
 
   it 'should not allow null url', ->
-    error = integration.validate(lead: { url: null })
+    error = integration.validate({ url: null })
     assert.equal error, 'url must not be blank'
 
   it 'should not allow undefined url', ->
-    error = integration.validate(lead: {url: undefined })
+    error = integration.validate({url: undefined })
     assert.equal error, 'url must not be blank'
 
   it 'should not allow invalid url', ->
-    error = integration.validate(lead: fields.buildLeadVars(url: 'nooneenoo'))
+    error = integration.validate({url: 'nooneenoo'})
     assert.equal error, 'url must be valid'
 
   it 'should not error when url is valid', ->
-    error = integration.validate(lead: fields.buildLeadVars(url: 'https://www.npmjs.com'))
+    error = integration.validate({url: 'https://www.npmjs.com'})
     assert.equal error, undefined
 
 describe 'Success Response', ->
@@ -46,14 +46,6 @@ describe 'Success Response', ->
 
     response = integration.response({}, {}, res)
     assert.equal('success',response.outcome)
-
-  it 'should parse reason when status is in the 200 range', ->
-    res =
-      status: 200
-
-    response = integration.response({}, {}, res)
-    assert.equal('valid status: (200)', response.reason)
-   
 
 describe 'Failure Response', ->
 
