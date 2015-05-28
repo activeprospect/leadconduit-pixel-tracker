@@ -7,11 +7,9 @@ validUrl = require('valid-url');
 
 request = (vars) ->
   
-  url = vars.url
-  
   req = 
     method: 'GET'
-    url: url
+    url: vars.url
     headers:
       'Accept': '*/*'
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -54,7 +52,6 @@ response.variables = ->
 #
 
 module.exports =
-  name: 'outbound'
   validate: validate
   request: request
   response: response
