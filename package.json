@@ -2,7 +2,7 @@
   "name": "leadconduit-pixel-tracker",
   "description": "LeadConduit pixel tracker",
   "author": "Lynda Wellhausen <lynda@activeprospect.com>",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "licenses": [
     {
