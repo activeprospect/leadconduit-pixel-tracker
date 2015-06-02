@@ -1,5 +1,5 @@
 querystring = require('querystring')
-validUrl = require('valid-url');
+validUrl = require('valid-url')
 
 #
 # Request Function -------------------------------------------------------
