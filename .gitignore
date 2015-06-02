@@ -1,4 +1,5 @@
 lib
 node_modules
+coffeelint.json
 .idea
 .DS_Store

@@ -12,6 +12,10 @@ task 'build', ->
 task 'test', ->
   run 'NODE_ENV=test TZ=GMT ./node_modules/.bin/mocha spec/* --compilers coffee:coffee-script/register --reporter spec --colors'
 
+task 'lint', ->
+  run 'curl http://leadconduit-build.s3.amazonaws.com/coffeelint.json > coffeelint.json && ./node_modules/.bin/coffeelint -f coffeelint.json src/*'
+
+
 task 'clean', ->
   run 'rm -fr ./lib'
 
