@@ -5,7 +5,7 @@ log = console.log
 task 'build', ->
   coffeePath = './node_modules/coffee-script/bin/coffee'
   if fs.existsSync(coffeePath)
-    run "#{coffeePath} -o lib -c src"
+    run "rm -rf lib; #{coffeePath} -o lib -c src"
   else
     console.log('> skipping build because coffee-script is not installed')
 
@@ -14,10 +14,6 @@ task 'test', ->
 
 task 'lint', ->
   run 'curl --silent http://leadconduit-build.s3.amazonaws.com/coffeelint.json > coffeelint.json && ./node_modules/.bin/coffeelint -f coffeelint.json src/*'
-
-
-task 'clean', ->
-  run 'rm -fr ./lib'
 
 run = (args...) ->
   for a in args
