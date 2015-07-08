@@ -32,14 +32,14 @@ validate = (vars) ->
 #
 
 response = (vars, req, res) ->
-  outbound = {} 
+  event = {} 
   if res.status >= 200 and res.status <= 299
-    outbound.outcome = 'success'
+    event.outcome = 'success'
   else
-    outbound.outcome = 'failure' 
-    outbound.reason = "invalid status: (#{res.status})"
+    event.outcome = 'failure' 
+    event.reason = "invalid status: (#{res.status})"
 
-  outbound
+  outbound: event
 
 response.variables = ->
   [

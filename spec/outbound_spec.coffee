@@ -45,7 +45,7 @@ describe 'Success Response', ->
       status: 200
 
     response = integration.response({}, {}, res)
-    assert.equal('success',response.outcome)
+    assert.equal('success', response.outbound.outcome)
 
 describe 'Failure Response', ->
 
@@ -54,14 +54,14 @@ describe 'Failure Response', ->
       status: 403
 
     response = integration.response({}, {}, res)
-    assert.equal('failure',response.outcome)
+    assert.equal('failure',response.outbound.outcome)
 
   it 'should parse reason when status is not in 200 range', ->
     res =
       status: 403
 
     response = integration.response({}, {}, res)
-    assert.equal('invalid status: (403)', response.reason)
+    assert.equal('invalid status: (403)', response.outbound.reason)
 
   
 
