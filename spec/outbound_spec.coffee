@@ -6,19 +6,27 @@ describe 'Outbound Request', ->
 
   beforeEach ->
     @vars = {url: 'http://example.com/trackingpage'}
-    @request = integration.request(@vars)
 
   it 'should have a valid URL', ->
+    @request = integration.request(@vars)
     assert.equal @request.url, 'http://example.com/trackingpage'
 
   it 'should be GET', ->
+    @request = integration.request(@vars)
     assert.equal @request.method, 'GET'
 
   it 'should accept JSON', ->
+    @request = integration.request(@vars)
     assert.equal @request.headers.Accept, '*/*'
 
   it 'should have Content-Type', ->
+    @request = integration.request(@vars)
     assert.equal @request.headers['Content-Type'], 'application/x-www-form-urlencoded' 
+
+  it 'should append the query string to the base URL', ->
+    @vars.parameter = {firstName:'Jim', lastName:'Lawson', address: '1005 East'}
+    @requestParams = integration.request(@vars)
+    assert.equal @requestParams.url, 'http://example.com/trackingpage?firstName=Jim&lastName=Lawson&address=1005%20East'
 
 describe 'Outbound validate', ->
 

@@ -6,10 +6,15 @@ validUrl = require('valid-url')
 #
 
 request = (vars) ->
-  
+  if vars.parameter and Object.keys(vars.parameter).length > 1    
+    encodedQuery = querystring.encode(vars.parameter)
+    url = "#{vars.url}?#{encodedQuery}"
+  else
+    url = "#{vars.url}"
+
   req = 
     method: 'GET'
-    url: vars.url
+    url: url
     headers:
       'Accept': '*/*'
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -17,6 +22,7 @@ request = (vars) ->
 request.variables = ->
   [
     { name: 'url', type: 'string', required: true, description: 'url address for tracking' }
+    { name: 'parameter.*', type: 'wildcard', required: false, description: 'Additional parameter to add onto the pixel query URL' }
   ]
 
 #
