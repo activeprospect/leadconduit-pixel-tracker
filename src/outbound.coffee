@@ -1,11 +1,8 @@
 querystring = require('querystring')
 validUrl = require('valid-url')
+request = require('request')
 
-#
-# Request Function -------------------------------------------------------
-#
-
-request = (vars) ->
+requestParams = (vars) ->  
   if vars.parameter and Object.keys(vars.parameter).length > 1    
     encodedQuery = querystring.encode(vars.parameter)
     url = "#{vars.url}?#{encodedQuery}"
@@ -19,11 +16,17 @@ request = (vars) ->
       'Accept': '*/*'
       'Content-Type': 'application/x-www-form-urlencoded'
 
-request.variables = ->
+
+#
+# Request Variables -------------------------------------------------------
+#     
+
+requestVariables = ->
   [
     { name: 'url', type: 'string', required: true, description: 'url address for tracking' }
     { name: 'parameter.*', type: 'wildcard', required: false, description: 'Additional parameter to add onto the pixel query URL' }
   ]
+
 
 #
 # Validate Function ------------------------------------------------------
@@ -33,25 +36,44 @@ validate = (vars) ->
   return 'url must not be blank' unless vars.url 
   return 'url must be valid' if validUrl.isUri(vars.url) is undefined
 
+
 #
-# Response Function ------------------------------------------------------
+# Handle Function ------------------------------------------------------
 #
 
-response = (vars, req, res) ->
+handle = (vars, callback) ->
+  request requestParams(vars), (err, res) ->
+    handleResponse err, res, (error, response) ->
+      if error
+        callback error
+      else
+        callback null, response
+
+
+handleResponse =  (err, res, callback) ->
   event = {} 
-  if res.status >= 200 and res.status <= 299
-    event.outcome = 'success'
+  if err
+    event.outcome = 'error'
+    event.reason = err.message
   else
-    event.outcome = 'failure' 
-    event.reason = "invalid status: (#{res.status})"
+    if res.statusCode >= 200 and res.statusCode <= 299
+      event.outcome = 'success'
+    else
+      event.outcome = 'failure'
+      event.reason = "invalid status: (#{res.statusCode})"
 
-  outbound: event
+  callback null, outbound: event
 
-response.variables = ->
+
+#
+# Response Variables -------------------------------------------------------
+#  
+responseVariables = ->
   [
     { name: 'outbound.outcome', type: 'string', description: 'Success if outcome is in 200 range. Failure if not.' }
-    { name: 'outbound.reason', type: 'string', description: 'This is the status code when returned code is not in 200 range.' } 
+    { name: 'outbound.reason', type: 'string', description: 'This is returned when outcome is not success.' } 
   ]
+
 
 #
 # Exports ----------------------------------------------------------------
@@ -59,8 +81,11 @@ response.variables = ->
 
 module.exports =
   validate: validate
-  request: request
-  response: response
+  requestVariables: requestVariables
+  responseVariables: responseVariables
+  handle: handle
+  requestParams: requestParams
+  handleResponse: handleResponse
 
 
 
