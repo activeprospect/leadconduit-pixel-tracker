@@ -1,7 +1,7 @@
 {
   "name": "leadconduit-pixeltracker",
   "description": "LeadConduit pixel tracker",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "index.js",
   "license": "CC-BY-NC-ND-4.0",
   "repository": {
