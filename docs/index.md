@@ -1,6 +1,6 @@
 ---
 provider: ActiveProspect
-name: ActiveProspect
+name: Pixel Tracker
 link: https://activeprospect.com/
 ---
-Marketing automation middleware platform that instantly qualifies internet leads.
+Track Affiliate conversions more effectively with Pixel Tracker.
