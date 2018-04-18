@@ -8,12 +8,8 @@
     "type": "git",
     "url": "https://github.com/activeprospect/leadconduit-integration-pixeltracker"
   },
-  "engines": {
-    "node": ">=0.8.1"
-  },
   "scripts": {
-    "test": "cake test",
-    "prepublish": "cake build"
+    "test": "mocha"
   },
   "dependencies": {
     "request": "^2.81.0",
@@ -21,8 +17,6 @@
   },
   "devDependencies": {
     "chai": ">= 1.9.0",
-    "coffee-script": ">= 1.7.0",
-    "leadconduit-cakefile": "^0.3.1",
     "mocha": ">= 1.17.0",
     "nock": "^9.0.13"
   }
