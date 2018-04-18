@@ -14,6 +14,11 @@ module.exports = {
             "error",
             "unix"
         ],
+        "brace-style": [
+          "error",
+          "stroustrup",
+          {"allowSingleLine": true}
+        ],
         "quotes": [
             "error",
             "single",
