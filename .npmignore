@@ -2,3 +2,4 @@ src
 Cakefile
 coffeelint.json
 .idea
+.github
